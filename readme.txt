@@ -37,6 +37,12 @@
 
 @par Application Description 
 
+Modificaciones por Hernan Haimovich & Andres Vazquez
+
+Basado en el reproductor de audio, se procesa la señal para detectar una señal GTS.
+Se detecta la energía de la señal a la frecuencia del tono GTS (1kHz), en ventanas de longitud configurable en 1, 2 o 4 ciclos del tono GTS. Se comprueba que la duración de los tonos corto y largo esté dentro de cierta tolerancia, así como la separación entre la finalización de cada tono corto y la del tono largo. Se requiere configurar el umbral de detección de acuerdo a la intensidad del tono GTS.
+La detección de cada tono se señaliza encendiendo el LED 5. La detección de la señal GTS completa se señaliza encendiendo el LED 4. Una vez detectada la señal GTS completa se inicia un temporizador que enciende el LED 5 durante 1 segundo cada 60 segundos.
+
 This application provides a description of an audio play and record with different
 MEMS used on STM32F401-Discovery. 
 
