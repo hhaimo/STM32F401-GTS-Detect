@@ -70,6 +70,7 @@ typedef enum
 #define FREQ_MUESTREO 16
 // Longitud de la ventana temporal en cantidad de ciclos del tono a detectar
 //   Valores admitidos: 1, 2, 4
+//   Si se cambia esta longitud, debe cambiarse UMBRAL (en audiofilter.c)
 #define CANT_CICLOS_VENTANA 4
 // Este código sólo sirve cuando CANT_MUESTRAS_CICLO es 16
 #define CANT_MUESTRAS_CICLO (FREQ_MUESTREO / FREQ_TONO)
@@ -145,7 +146,8 @@ int32_t getDataCB(int16_t *pBuff, int32_t length)
 		CUENTA_TONO_CORTO,
 		CUENTA_ESPACIO,
 		CUENTA_TONO_LARGO,
-		SECUENCIA_DETECTADA
+		SECUENCIA_DETECTADA,
+		SEC_DETECTADA_IDLE
 	} lista_estados;
 	static lista_estados estado=ESPERA_TONO;
 	static int cant_secuencias=0;
@@ -261,9 +263,12 @@ int32_t getDataCB(int16_t *pBuff, int32_t length)
 				// Fuegos artificiales
 				BSP_LED_On(LED4);
 				BSP_LED_Off(LED5);
-				estado = ESPERA_TONO;
+				estado = SEC_DETECTADA_IDLE;
 				cant_secuencias = 0;
 				PeriodicCaller_Start(FuegosArtificiales);
+				break;
+			
+			case SEC_DETECTADA_IDLE:
 				break;
 			
 		}

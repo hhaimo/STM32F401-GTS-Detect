@@ -45,8 +45,14 @@
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define BLOCK_SIZE   1
+
+// Umbral de prueba 
 //#define UMBRAL 0xB000
+
+/*  Umbral para Tono + Ruido Blanco + Música */
 #define UMBRAL 0x20000
+/*  Umbral para Tono + Ruido Blanco*/
+//#define UMBRAL 0xC000
 
 /* Private variables ---------------------------------------------------------*/
 static const q15_t sin_1khz_FS16khz[80] =
